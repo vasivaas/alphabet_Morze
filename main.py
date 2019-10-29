@@ -1,6 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+import winsound
 import re
+import  time
 
 
 def filtered_string(strings):
@@ -9,7 +9,7 @@ def filtered_string(strings):
     result = []
     res = 0
     result1 = []
-    l = re.split(r"['!@#$%^&*()-_+=|\/ 1234567890']", strings)
+    l = re.split(r"['!@#$%^&*()-_+=|1234567890]", strings)
     for st in l:
         if st != '':
             result.append(st)
@@ -20,38 +20,32 @@ def filtered_string(strings):
 
 
 def convert_to_morze(strings):
-    azbuka = {'а': '.−',
-              'б': '−...',
-              'в': '.− −',
-              'г': '− − .',
-              'д': '−..',
-              'е': '.',
-              'є': '..−..',
-              'ж': '...−',
-              'з': '− − ..',
-              'и': '−.− −',
-              'і': '..',
-              'ї': '.− − −.',
-              'й': '.− − −',
-              'к': '−.−',
-              'л': '.−..',
-              'м': '− −',
-              'н': '−.',
-              'о': '− − −',
-              'п': '.− −.',
-              'р': '.−.',
-              'с': '...',
-              'т': '−',
-              'у': '..−',
-              'ф': '..−.',
-              'х': '....',
-              'ц': '−.−.',
-              'ч': '− − −.',
-              'ш': '− − − −',
-              'щ': '− − . −',
-              'ь': '−..−',
-              'ю': '..− −',
-              'я': '.−.−'}
+    azbuka = {'a': '.-',
+              'b': '-...',
+              'c': '-.-.',
+              'd': '-..',
+              'e': '.',
+              'f': '..-.',
+              'g': '--.',
+              'h': '....',
+              'i': '..',
+              'j': '.---',
+              'k': '-.-',
+              'l': '.-..',
+              'm': '--',
+              'n': '-.',
+              'o': '---',
+              'p': '.--.',
+              'q': '--.-',
+              'r': '.-.',
+              's': '...',
+              't': '-',
+              'u': '..-',
+              'v': '...-',
+              'w': '.--',
+              'x': '-..-',
+              'y': '-.--',
+              'z': '--..'}
 
     strings = filtered_string(strings)
     result = []
@@ -62,4 +56,13 @@ def convert_to_morze(strings):
 
 
 ms = raw_input("input youre message:  ")
-print convert_to_morze(ms)
+mess = convert_to_morze(ms)
+frequency = 1000
+for i in mess:
+    for symbol in i:
+        if symbol == '-':
+            winsound.Beep(frequency, 1000)
+        elif symbol == '.':
+            winsound.Beep(frequency, 300)
+    print
+    time.sleep(0.2)
